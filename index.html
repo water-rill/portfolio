@@ -188,7 +188,15 @@
 
     btn.addEventListener('click', function () {
       var a = cur();
-      if (a.paused) { a.play(); } else { a.pause(); }
+      if (a.paused) {
+        timeEl.textContent = '加载中…';
+        var pr = a.play();
+        if (pr && pr.catch) {
+          pr.catch(function () { timeEl.textContent = '无法播放，请刷新'; });
+        }
+      } else {
+        a.pause();
+      }
     });
 
     bar.addEventListener('click', function (e) {
@@ -208,6 +216,11 @@
       });
       a.addEventListener('timeupdate', function () { if (a === cur()) paint(); });
       a.addEventListener('loadedmetadata', function () { if (a === cur()) paint(); });
+      a.addEventListener('playing', function () { if (a === cur()) paint(); });
+      a.addEventListener('waiting', function () { if (a === cur()) timeEl.textContent = '缓冲中…'; });
+      a.addEventListener('error', function () {
+        if (a === cur()) timeEl.textContent = '加载失败，请刷新';
+      });
       a.addEventListener('ended', function () {
         a.currentTime = 0;
         if (a === cur()) { paint(); btn.classList.remove('playing'); }
