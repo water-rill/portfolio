@@ -3,361 +3,272 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>声音有位置 · 作品集</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<title>作品集</title>
 <style>
   :root {
-    --blue: #1423b8;
-    --black: #000000;
-    --yellow: #f7dd47;
-    --white: #ffffff;
-    --green: #1fc27a;
-    --muted-blue: #b4bcf0;
-    --pad: clamp(20px, 4vw, 56px);
-
-    --cn: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
-    --en: "Barlow Condensed", var(--cn);
-    --body-en: "Barlow", var(--cn);
-
-    --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
-    --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-    --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-    --step-head: clamp(3rem, 1.2rem + 7vw, 7rem);
-    --step-shout: clamp(3.5rem, 1rem + 13vw, 12rem);
+    --ink: #14161a;
+    --muted: #8a8f96;
+    --line: #e6e4e0;
+    --bg: #fbfaf8;
+    --blue: #3a7bc8;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
-
   body {
-    background: var(--blue);
-    color: var(--white);
-    font-family: var(--body-en);
-    font-size: var(--step-body);
-    line-height: 1.5;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
 
-  img { display: block; max-width: 100%; }
-
-  /* ---------- HERO ---------- */
-  .hero {
-    position: relative;
-    background: var(--blue);
-    padding: clamp(28px, 5vh, 56px) var(--pad) clamp(36px, 6vh, 64px);
-    overflow: hidden;
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(48px, 8vh, 88px) clamp(20px, 5vw, 40px) clamp(56px, 9vh, 88px);
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
-    gap: clamp(20px, 4vw, 56px);
-    align-items: end;
-  }
-
-  .lead {
-    font-family: var(--cn);
-    font-size: var(--step-small);
-    letter-spacing: 0.18em;
-    color: var(--muted-blue);
-    margin-bottom: clamp(14px, 3vh, 28px);
-  }
+  /* 头部 */
+  header { margin-bottom: clamp(36px, 6vh, 56px); }
 
   h1 {
-    font-family: var(--cn);
-    font-weight: 900;
-    font-size: var(--step-shout);
-    line-height: 0.88;
-    letter-spacing: -0.03em;
-    text-transform: none;
-  }
-
-  .note {
-    margin-top: clamp(18px, 3.4vh, 34px);
-    max-width: 30ch;
-    font-size: var(--step-body);
-    color: var(--muted-blue);
-  }
-
-  .btn {
-    display: inline-block;
-    margin-top: clamp(20px, 3.4vh, 32px);
-    background: var(--yellow);
-    color: #000;
-    font-family: var(--cn);
+    font-size: clamp(26px, 2.2vw + 18px, 34px);
     font-weight: 700;
-    font-size: var(--step-body);
-    letter-spacing: 0.04em;
-    padding: 14px 34px;
-    text-decoration: none;
-    border-radius: 0;
-    transition: background .15s ease;
-  }
-  .btn:hover { background: var(--green); color: #000; }
-
-  .hero-photo {
-    position: relative;
-    transform: rotate(-3.5deg);
-    margin-bottom: -6px;
-  }
-  .hero-photo img {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    filter: grayscale(1) contrast(1.15) brightness(0.92);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
   }
 
-  /* ---------- WORK ---------- */
-  .work {
-    background: var(--black);
-    color: var(--white);
-    padding: clamp(48px, 9vh, 96px) var(--pad) clamp(56px, 10vh, 110px);
+  .sub {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
   }
 
-  .work h2 {
-    font-family: var(--cn);
-    font-weight: 900;
-    font-size: var(--step-head);
-    line-height: 0.92;
-    letter-spacing: -0.03em;
-    margin-bottom: clamp(32px, 6vh, 56px);
+  /* 作品 */
+  .track {
+    padding: clamp(28px, 4.5vh, 40px) 0;
+    border-top: 1px solid var(--line);
   }
+  .track:last-of-type { border-bottom: 1px solid var(--line); }
 
-  .track { padding: clamp(28px, 5vh, 48px) 0; border-top: 3px solid #1a1a1a; }
-  .track:last-of-type { border-bottom: 3px solid #1a1a1a; }
-
-  .track h3 {
-    font-family: var(--cn);
-    font-weight: 800;
-    font-size: clamp(1.75rem, 1rem + 2.6vw, 3.25rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+  .track h2 {
+    font-size: clamp(18px, 1vw + 14px, 21px);
+    font-weight: 700;
+    letter-spacing: 0.01em;
   }
 
   .meta {
-    margin-top: 10px;
-    font-size: var(--step-small);
-    font-family: var(--cn);
-    letter-spacing: 0.1em;
-    color: #8f8f8f;
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
   }
 
   .wave {
+    display: block;
     width: 100%;
-    margin-top: clamp(18px, 3vh, 28px);
-    opacity: 0.92;
+    height: clamp(52px, 8vw, 76px);
+    object-fit: fill;
+    margin: clamp(16px, 2.6vh, 22px) 0 0;
+    opacity: 0.95;
   }
 
-  .ab { margin-top: clamp(18px, 3vh, 26px); display: flex; gap: 10px; flex-wrap: wrap; }
+  /* A/B */
+  .ab { margin-top: 16px; display: flex; gap: 8px; }
+
   .ab button {
-    font-family: var(--cn);
-    font-size: var(--step-small);
-    letter-spacing: 0.08em;
-    padding: 9px 18px;
-    border: 2px solid #333;
+    font: inherit;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    padding: 7px 15px;
+    border: 1px solid var(--line);
     background: transparent;
-    color: #9a9a9a;
-    border-radius: 0;
+    color: var(--muted);
+    border-radius: 100px;
     cursor: pointer;
-    transition: border-color .15s, color .15s, background .15s;
+    transition: all .16s ease;
   }
-  .ab button:hover { border-color: var(--white); color: var(--white); }
-  .ab button.on { background: var(--yellow); border-color: var(--yellow); color: #000; font-weight: 700; }
-  .ab button:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+  .ab button:hover { border-color: #c9c5be; color: var(--ink); }
+  .ab button.on {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+    font-weight: 600;
+  }
+  .ab button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
   .ab-note {
-    margin-top: 12px;
-    font-family: var(--cn);
-    font-size: var(--step-small);
-    color: #8f8f8f;
-    letter-spacing: 0.04em;
+    margin-top: 9px;
+    font-size: 12.5px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
   }
 
-  .player { display: flex; align-items: center; gap: 18px; margin-top: clamp(20px, 3vh, 30px); }
+  /* 播放器 */
+  .player {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 18px;
+  }
 
   .play {
-    width: 62px; height: 62px; flex: 0 0 62px;
-    background: var(--green);
-    border: 0; border-radius: 0;
-    color: #000;
-    display: grid; place-items: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--ink);
+    color: #fff;
+    display: grid;
+    place-items: center;
     cursor: pointer;
+    transition: background .16s ease;
   }
-  .play:hover { background: var(--yellow); }
-  .play:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
-  .play svg { width: 20px; height: 20px; fill: currentColor; }
-  .play .icon-pause { display: none; }
+  .play:hover { background: var(--blue); }
+  .play:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .play svg { width: 14px; height: 14px; fill: currentColor; margin-left: 1px; }
+  .play .icon-pause { display: none; margin-left: 0; }
   .play.playing .icon-play { display: none; }
   .play.playing .icon-pause { display: block; }
 
-  .bar { flex: 1; height: 28px; display: flex; align-items: center; cursor: pointer; position: relative; }
-  .bar::before { content: ""; position: absolute; left: 0; right: 0; height: 3px; background: #2a2a2a; }
-  .fill { position: relative; height: 3px; width: 0%; background: var(--green); }
+  .bar {
+    flex: 1;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+  }
+  .bar::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 3px;
+    background: #e8e5df;
+    border-radius: 2px;
+  }
+  .fill {
+    position: relative;
+    height: 3px;
+    width: 0%;
+    background: var(--blue);
+    border-radius: 2px;
+  }
 
   .time {
-    font-family: var(--en);
-    font-size: 1.05rem;
-    letter-spacing: 0.06em;
-    color: #8f8f8f;
-    min-width: 96px; text-align: right;
+    font-size: 12px;
+    color: var(--muted);
     font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+    min-width: 82px;
+    text-align: right;
   }
 
-  /* ---------- ABOUT ---------- */
-  .about {
-    background: var(--yellow);
-    color: #000;
-    padding: clamp(52px, 10vh, 110px) var(--pad);
+  /* 底部 */
+  .footer-block {
+    margin-top: clamp(36px, 6vh, 52px);
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
   }
 
-  .about p {
-    font-family: var(--cn);
-    font-weight: 700;
-    font-size: clamp(1.5rem, 0.9rem + 2.6vw, 3rem);
-    line-height: 1.28;
-    letter-spacing: -0.01em;
-    max-width: 26ch;
+  .qr {
+    width: 88px;
+    height: 88px;
+    flex: 0 0 88px;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 6px;
   }
-  .about p + p { margin-top: clamp(20px, 3.4vh, 34px); }
-  .about em { font-style: normal; background: #000; color: var(--yellow); padding: 0 .18em; }
+  .qr img { width: 100%; height: 100%; }
 
-  /* ---------- CONTACT ---------- */
-  .contact {
-    background: var(--blue);
-    color: var(--white);
-    padding: clamp(52px, 9vh, 96px) var(--pad) clamp(56px, 10vh, 100px);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(28px, 5vw, 64px);
-    align-items: end;
-  }
+  .footer-copy { flex: 1; min-width: 200px; }
 
-  .contact h2 {
-    font-family: var(--cn);
-    font-weight: 900;
-    font-size: var(--step-head);
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-  }
-
-  .contact .url {
-    display: block;
-    margin-top: clamp(18px, 3vh, 26px);
-    font-family: var(--en);
-    font-size: var(--step-lead);
-    letter-spacing: 0.02em;
-    color: var(--white);
+  .url {
+    display: inline-block;
+    font-size: 14.5px;
+    color: var(--ink);
     text-decoration: none;
-    border-bottom: 3px solid var(--green);
-    padding-bottom: 4px;
-    width: fit-content;
+    border-bottom: 1px solid var(--blue);
+    padding-bottom: 1px;
   }
-  .contact .url:hover { color: var(--green); }
+  .url:hover { color: var(--blue); }
 
-  .qr { background: var(--white); padding: 12px; }
-  .qr img { width: clamp(120px, 16vw, 172px); }
-
-  .foot {
-    background: var(--blue);
-    border-top: 3px solid #2b3ad0;
-    padding: 22px var(--pad) 30px;
-    font-family: var(--cn);
-    font-size: var(--step-small);
-    color: var(--muted-blue);
-    letter-spacing: 0.06em;
+  .hint {
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--muted);
   }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 760px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-photo { order: -1; transform: rotate(-2.5deg); }
-    .hero-photo img { aspect-ratio: 16 / 10; }
-    .contact { grid-template-columns: 1fr; align-items: start; }
-    .qr { justify-self: start; }
+  .colophon {
+    margin-top: clamp(36px, 6vh, 52px);
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: #a8a49d;
+    letter-spacing: 0.03em;
   }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header class="hero">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <p class="lead">现场音控 · 录音 · 混音</p>
-      <h1>声音<br>有位置</h1>
-      <p class="note">两首自己的活儿。第二首能直接切着听处理前后，差在哪，你自己判断。</p>
-      <a class="btn" href="#work">往下听</a>
+  <header>
+    <h1>作品集</h1>
+    <div class="sub">现场音控 · 录音 · 混音</div>
+  </header>
+
+  <article class="track" data-srcs="audio/21g-museum.mp3" data-total="4:19" data-wave="assets/wave-21g.png">
+    <h2>21 克博物馆</h2>
+    <div class="meta">翻唱 · 录音 / 剪辑 / 混音 · 4:19</div>
+    <img class="wave" src="assets/wave-21g.png" alt="21 克博物馆整曲波形">
+    <div class="player">
+      <button class="play" aria-label="播放">
+        <svg class="icon-play" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 16 16"><path d="M4 1.5h3.2v13H4zM8.8 1.5H12v13H8.8z"/></svg>
+      </button>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="time">0:00 / 4:19</div>
     </div>
-    <figure class="hero-photo">
-      <img src="assets/city.jpg" alt="城市高楼，仰拍的玻璃幕墙">
-    </figure>
-  </div>
-</header>
+  </article>
 
-<main>
+  <article class="track" data-srcs="audio/the-absent-light-raw.mp3|audio/the-absent-light.mp3" data-total="4:02"
+           data-wave="assets/wave-abl-raw.png|assets/wave-abl-mix.png">
+    <h2>没有的光</h2>
+    <div class="meta">分轨混音 · 4:02</div>
+    <img class="wave" src="assets/wave-abl-raw.png" alt="没有的光整曲波形">
 
-  <section class="work" id="work">
-    <h2>两首</h2>
+    <div class="ab">
+      <button class="on" data-ver="0">原分轨直混</button>
+      <button data-ver="1">处理后</button>
+    </div>
+    <div class="ab-note">同一段分轨，没做声像摆位和频段规避 vs 处理完的成品。切换时进度保留。</div>
 
-    <article class="track" data-srcs="audio/21g-museum.mp3" data-total="4:19">
-      <h3>21 克博物馆</h3>
-      <p class="meta">翻唱 · 录音 / 剪辑 / 混音 · 4:19</p>
-      <img class="wave" src="assets/wave-21g.png" alt="21 克博物馆的整曲波形">
-      <div class="player">
-        <button class="play" aria-label="播放">
-          <svg class="icon-play" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>
-          <svg class="icon-pause" viewBox="0 0 16 16"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg>
-        </button>
-        <div class="bar"><div class="fill"></div></div>
-        <div class="time">0:00 / 4:19</div>
-      </div>
-    </article>
+    <div class="player">
+      <button class="play" aria-label="播放">
+        <svg class="icon-play" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 16 16"><path d="M4 1.5h3.2v13H4zM8.8 1.5H12v13H8.8z"/></svg>
+      </button>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="time">0:00 / 4:02</div>
+    </div>
+  </article>
 
-    <article class="track" data-srcs="audio/the-absent-light-raw.mp3|audio/the-absent-light.mp3" data-total="4:02">
-      <h3>没有的光</h3>
-      <p class="meta">分轨混音 · 4:02</p>
-
-      <img class="wave" id="wave-ab" src="assets/wave-abl-raw.png" alt="没有的光的波形，可切换对比">
-
-      <div class="ab">
-        <button class="on" data-ver="0">原分轨直混</button>
-        <button data-ver="1">处理后</button>
-      </div>
-      <p class="ab-note">同一段分轨：没做声像摆位和频段规避，直接混 → 处理完的成品。切版本时进度会保留。</p>
-
-      <div class="player">
-        <button class="play" aria-label="播放">
-          <svg class="icon-play" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>
-          <svg class="icon-pause" viewBox="0 0 16 16"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg>
-        </button>
-        <div class="bar"><div class="fill"></div></div>
-        <div class="time">0:00 / 4:02</div>
-      </div>
-    </article>
-  </section>
-
-  <section class="about">
-    <p>初中站在台上唱歌，<em>想知道播放器里的歌为什么那么好听</em>，一路摸到了混音。</p>
-    <p>后来在广播台摸调音台，在合唱队学声音怎么摆。没规划过，都是被好奇心领过去的。</p>
-  </section>
-
-  <section class="contact">
-    <div>
-      <h2>扫码<br>听一下</h2>
+  <div class="footer-block">
+    <div class="qr"><img src="assets/qr.png" alt="作品集二维码"></div>
+    <div class="footer-copy">
       <a class="url" href="https://water-rill.github.io/portfolio/">water-rill.github.io/portfolio</a>
+      <div class="hint">手机扫左边，或直接点这里</div>
     </div>
-    <div class="qr">
-      <img src="assets/qr.png" alt="作品集二维码">
-    </div>
-  </section>
+  </div>
 
-</main>
+  <div class="colophon">音频为工作样带，仅作试听。完整简历与联系方式见投递附件。</div>
 
-<footer class="foot">
-  音频为工作样带，仅作试听。完整简历与联系方式见投递附件。
-</footer>
+</div>
 
 <script>
 (function () {
@@ -372,7 +283,10 @@
 
   function makePlayer(el) {
     var srcs = el.dataset.srcs.split('|');
+    var waves = (el.dataset.wave || '').split('|');
     var total = el.dataset.total;
+    var waveEl = el.querySelector('.wave');
+
     var audios = srcs.map(function (src) {
       var a = new Audio();
       a.preload = 'none';
@@ -446,6 +360,9 @@
         prev.pause();
         idx = nextIdx;
         btn.classList.remove('playing');
+
+        if (waveEl && waves[nextIdx]) waveEl.src = waves[nextIdx];
+
         var next = cur();
 
         function seek() {
@@ -464,19 +381,14 @@
     };
   }
 
-  var waveEl = document.getElementById('wave-ab');
-  var waveSrcs = ['assets/wave-abl-raw.png', 'assets/wave-abl-mix.png'];
-
   Array.prototype.forEach.call(document.querySelectorAll('.track'), function (el) {
     var player = makePlayer(el);
     var abBtns = el.querySelectorAll('.ab button');
     Array.prototype.forEach.call(abBtns, function (btn) {
       btn.addEventListener('click', function () {
-        var i = parseInt(btn.dataset.ver, 10);
         Array.prototype.forEach.call(abBtns, function (x) { x.classList.remove('on'); });
         btn.classList.add('on');
-        player.switchTo(i);
-        if (waveEl) waveEl.src = waveSrcs[i];
+        player.switchTo(parseInt(btn.dataset.ver, 10));
       });
     });
   });
